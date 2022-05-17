@@ -1,5 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
-import { createCanvas, loadImage } from 'canvas';
+import { Canvas, createCanvas, loadImage } from 'canvas';
 
 @Controller('poster')
 export class PosterController {
@@ -11,13 +11,50 @@ export class PosterController {
     @Get()
     getPoster(): any {
 
-        const canvas = createCanvas(200, 200)
-
+        const posterUrl = "https://image.posterlounge.at/images/m/1913709.jpg";
+        const title = "Testitle for movie"
+        const canvas = createCanvas(430, 670)
+        
         const ctx = canvas.getContext('2d')
+        
+        // Background
+        ctx.fillStyle = "#000";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+
+        // Poster background
+        return loadImage(posterUrl).then((image) => {
+            
+            ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+            const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            
+            gradient.addColorStop(0, 'rgba(0, 0, 0, 0.0)');
+            gradient.addColorStop(1, 'black');
+
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+
+            ctx.font = "37px Arial";
+            ctx.fillStyle = "white";
+            ctx.fillText("This is the movie name", 20, canvas.height - canvas.height / 7.5)
+
+            ctx.font = "24px Arial";
+            ctx.fillText("Available at", 20, canvas.height - canvas.height / 15.5)
+
+
+            return '<img src="' + canvas.toDataURL() + '" />'; 
+            
+        });
+
+
+        
+
         // Write "Awesome!"
         ctx.font = '30px Impact'
         ctx.rotate(0.1)
-        ctx.fillText('Awesome!', 50, 100)
+        ctx.fillText('Awesome!', 50, 100);
 
         // Draw line under text
         var text = ctx.measureText('Awesome!')
@@ -27,14 +64,7 @@ export class PosterController {
         ctx.lineTo(50 + text.width, 102)
         ctx.stroke()
 
-        // Draw cat with lime helmet
-        loadImage('examples/images/lime-cat.jpg').then((image) => {
-        ctx.drawImage(image, 50, 0, 70, 70)
-
-        console.log('<img src="' + canvas.toDataURL() + '" />')
-        })
-
-        return '<img src="' + canvas.toDataURL() + '" />';
+        
 
     }
 
