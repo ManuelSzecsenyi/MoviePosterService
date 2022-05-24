@@ -53,15 +53,15 @@ export class PosterController {
 
             console.log(movie)
 
-            if(movie.availableAt.disney) {
+            if(movie.availableAt.includes("disney")) {
                 ctx.fillText("Disney", 180, canvas.height - canvas.height / 15.5)
             }
 
-            if(movie.availableAt.netflix) {
+            if(movie.availableAt.includes("netflix")) {
                 ctx.fillText("Neflix", 260, canvas.height - canvas.height / 15.5)
             }
 
-            if(movie.availableAt.prime) {
+            if(movie.availableAt.includes("prime")) {
                 ctx.fillText("Prime", 320, canvas.height - canvas.height / 15.5)
             }
 
