@@ -1,4 +1,4 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { Canvas, createCanvas, loadImage } from 'canvas';
 import { IMovie } from './poster.model';
 
@@ -10,10 +10,15 @@ export class PosterController {
     ){}
 
     @Post()
-    getPoster(movie: IMovie): any {
+    getPoster(@Body() movie): any {
+
+
+       // const movie: IMovie = null;; 
+
+       // console.log(data)
 
         const posterUrl = movie.posterUrl; // "https://image.posterlounge.at/images/m/1913709.jpg";
-        const title = movie.name; //"Testitle for movie"
+        const title = movie?.name; //"Testitle for movie"
         const canvas = createCanvas(430, 670)
         
         const ctx = canvas.getContext('2d')
