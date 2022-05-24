@@ -1,5 +1,6 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post } from '@nestjs/common';
 import { Canvas, createCanvas, loadImage } from 'canvas';
+import { IMovie } from './poster.model';
 
 @Controller('poster')
 export class PosterController {
@@ -8,11 +9,11 @@ export class PosterController {
 
     ){}
 
-    @Get()
-    getPoster(): any {
+    @Post()
+    getPoster(movie: IMovie): any {
 
-        const posterUrl = "https://image.posterlounge.at/images/m/1913709.jpg";
-        const title = "Testitle for movie"
+        const posterUrl = movie.posterUrl; // "https://image.posterlounge.at/images/m/1913709.jpg";
+        const title = movie.name; //"Testitle for movie"
         const canvas = createCanvas(430, 670)
         
         const ctx = canvas.getContext('2d')
@@ -43,7 +44,23 @@ export class PosterController {
             ctx.font = "24px Arial";
             ctx.fillText("Available at", 20, canvas.height - canvas.height / 15.5)
 
+            ctx.font = "12px Arial";
 
+            if(movie?.availableAt?.disney) {
+                ctx.fillText("Disney", 180, canvas.height - canvas.height / 15.5)
+            }
+
+            if(movie?.availableAt?.netflix) {
+                ctx.fillText("Neflix", 260, canvas.height - canvas.height / 15.5)
+            }
+
+            if(movie?.availableAt?.prime) {
+                ctx.fillText("Prime", 320, canvas.height - canvas.height / 15.5)
+            }
+
+
+            return canvas.toDataURL();
+        
             return '<img src="' + canvas.toDataURL() + '" />'; 
             
         });
