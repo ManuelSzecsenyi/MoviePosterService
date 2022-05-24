@@ -51,6 +51,8 @@ export class PosterController {
 
             ctx.font = "12px Arial";
 
+            console.log(movie)
+
             if(movie.availableAt.disney) {
                 ctx.fillText("Disney", 180, canvas.height - canvas.height / 15.5)
             }
