@@ -18,7 +18,7 @@ export class PosterController {
        // console.log(data)
 
         const posterUrl = movie.posterUrl; // "https://image.posterlounge.at/images/m/1913709.jpg";
-        const title = movie?.name; //"Testitle for movie"
+        const title = movie.name; //"Testitle for movie"
         const canvas = createCanvas(430, 670)
         
         const ctx = canvas.getContext('2d')
@@ -44,7 +44,7 @@ export class PosterController {
 
             ctx.font = "37px Arial";
             ctx.fillStyle = "white";
-            ctx.fillText("This is the movie name", 20, canvas.height - canvas.height / 7.5)
+            ctx.fillText(movie.name, 20, canvas.height - canvas.height / 7.5)
 
             ctx.font = "24px Arial";
             ctx.fillText("Available at", 20, canvas.height - canvas.height / 15.5)
