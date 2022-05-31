@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { Canvas, createCanvas, loadImage } from 'canvas';
 import { IMovie } from './poster.model';
@@ -53,15 +54,15 @@ export class PosterController {
 
             console.log(movie)
 
-            if(movie.availableAt.includes("disney")) {
+            if(movie.availableAt == "disney") {
                 ctx.fillText("Disney", 180, canvas.height - canvas.height / 15.5)
             }
 
-            if(movie.availableAt.includes("netflix")) {
+            if(movie.availableAt == "netflix") {
                 ctx.fillText("Neflix", 260, canvas.height - canvas.height / 15.5)
             }
 
-            if(movie.availableAt.includes("prime")) {
+            if(movie.availableAt == "prime") {
                 ctx.fillText("Prime", 320, canvas.height - canvas.height / 15.5)
             }
 
