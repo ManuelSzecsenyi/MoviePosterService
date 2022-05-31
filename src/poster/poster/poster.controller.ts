@@ -9,16 +9,25 @@ export class PosterController {
 
     ){}
 
-    @Post()
+    @Get()
     getPoster(@Body() movie): any {
 
 
-       // const movie: IMovie = null;; 
+       movie= {
+            posterUrl: "https://image.posterlounge.at/images/m/1913709.jpg",
+            name: "wwwwwwwwwwwwwwwwwwwwwwww",
+            availableAt: ["netflix"]
+       }; 
 
        // console.log(data)
 
         const posterUrl = movie.posterUrl; // "https://image.posterlounge.at/images/m/1913709.jpg";
-        const title = movie.name; //"Testitle for movie"
+        let title = movie.name.slice(0, 10); //"Testitle for movie"
+
+        if(movie.name.length > 10) {
+            title += "..."
+        }
+
         const canvas = createCanvas(430, 670)
         
         const ctx = canvas.getContext('2d')
@@ -44,7 +53,7 @@ export class PosterController {
 
             ctx.font = "37px Arial";
             ctx.fillStyle = "white";
-            ctx.fillText(movie.name, 20, canvas.height - canvas.height / 7.5)
+            ctx.fillText(title, 20, canvas.height - canvas.height / 7.5)
 
             ctx.font = "24px Arial";
             ctx.fillText("Available at", 20, canvas.height - canvas.height / 15.5)
@@ -66,7 +75,7 @@ export class PosterController {
             }
 
 
-            return canvas.toDataURL();
+            //return canvas.toDataURL();
         
             return '<img src="' + canvas.toDataURL() + '" />'; 
             
