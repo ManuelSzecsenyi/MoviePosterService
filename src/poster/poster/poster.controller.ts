@@ -10,15 +10,17 @@ export class PosterController {
 
     ){}
 
-    @Get()
+    @Post()
     getPoster(@Body() movie): any {
 
 
+        /*
        movie= {
             posterUrl: "https://image.posterlounge.at/images/m/1913709.jpg",
             name: "wwwwwwwwwwwwwwwwwwwwwwww",
             availableAt: ["netflix"]
        }; 
+       */
 
        // console.log(data)
 
