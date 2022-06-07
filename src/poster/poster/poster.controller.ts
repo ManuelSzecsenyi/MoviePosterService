@@ -25,7 +25,7 @@ export class PosterController {
        // console.log(data)
 
         const posterUrl = movie.posterUrl; // "https://image.posterlounge.at/images/m/1913709.jpg";
-        let title = movie.name.slice(0, 10); //"Testitle for movie"
+        let title = movie.name.slice(0, 18); //"Testitle for movie"
 
         if(movie.name.length > 10) {
             title += "..."
