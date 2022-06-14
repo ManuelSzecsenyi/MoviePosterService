@@ -16,7 +16,7 @@ export class PosterController {
         return this.getPoster({
             posterUrl: "https://image.posterlounge.at/images/m/1913709.jpg",
             name: "wwwwwwwwwwwwwwwwwwwwwwww",
-            availableAt: ["netflix", "prime"]
+            availableAt: ["netflix", "prime", "disney"],
         })
     }
 
@@ -71,27 +71,27 @@ export class PosterController {
 
             if(movie.availableAt.includes("disney")) {
                 ctx.globalAlpha = 1
-                ctx.drawImage(disney, 160, 595, 50, 50)
+                ctx.drawImage(disney, 160 +50, 595, 50, 50)
             } else {
                 ctx.globalAlpha = 0.3
-                ctx.drawImage(disney, 160, 595, 50, 50)
+                ctx.drawImage(disney, 160+50, 595, 50, 50)
             }
 
             if(movie.availableAt.includes("netflix")) {
                 ctx.globalAlpha = 1
-                ctx.drawImage(netflix, 220, 595, 50, 50)
+                ctx.drawImage(netflix, 220+50, 595, 50, 50)
             } else {
                 ctx.globalAlpha = 0.3
-                ctx.drawImage(netflix, 220, 595, 50, 50)
+                ctx.drawImage(netflix, 220+50, 595, 50, 50)
             }
 
 
             if(movie.availableAt.includes( "prime")) {
                 ctx.globalAlpha = 1
-                ctx.drawImage(prime, 280, 595, 50, 50)
+                ctx.drawImage(prime, 280+50, 595, 50, 50)
             } else {
                 ctx.globalAlpha = 0.3
-                ctx.drawImage(prime, 280, 595, 50, 50)
+                ctx.drawImage(prime, 280+50, 595, 50, 50)
             }
 
             //return canvas.toDataURL();
